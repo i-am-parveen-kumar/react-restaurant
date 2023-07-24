@@ -1,0 +1,14 @@
+.restaurant-card-container {
+    width: 250px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+
+    .res-usp {
+        display: flex;
+        column-gap: 5px;
+        justify-content: space-between;
+    }
+
+}
