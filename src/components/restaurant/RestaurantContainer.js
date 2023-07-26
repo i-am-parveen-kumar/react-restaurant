@@ -6,48 +6,54 @@ import { ShimmerRestaurantCard } from "../ShimmerRestaurantCard";
 import { Shimmer } from "../shimmer/Shimmer";
 
 const predicates = {
-  TOP_RATED_RESTAURANTS: restaurant => restaurant?.info?.avgRating > 4,
-  SEARCH: searchText => restaurant => restaurant?.info?.name?.toLowerCase().includes(searchText.toLowerCase())
+  TOP_RATED_RESTAURANTS: restaurant => restaurant?.data?.avgRating > 4,
+  SEARCH: searchText => restaurant => restaurant?.data?.name?.toLowerCase().includes(searchText.toLowerCase())
 }
 
 const compareFunctions = {
   RATINGS_LOW_TO_HIGH: (a, b) => {
-    return isNaN(a?.info?.avgRating) || isNaN(b?.info?.avgRating) ? 0 : a?.info?.avgRating - b?.info?.avgRating
+    return isNaN(a?.data?.avgRating) || isNaN(b?.data?.avgRating) ? 0 : a?.data?.avgRating - b?.data?.avgRating
   },
   RATINGS_HIGH_TO_LOW: (a, b) =>
-    isNaN(a?.info?.avgRating) || isNaN(b?.info?.avgRating) ? 0 : b?.info?.avgRating - a?.info?.avgRating,
+    isNaN(a?.data?.avgRating) || isNaN(b?.data?.avgRating) ? 0 : b?.data?.avgRating - a?.data?.avgRating,
   PRICE_LOW_TO_HIGH: (a, b) => {
-    const aCost = a?.info?.costForTwo?.match(/\d+/)
-    const bCost = b?.info?.costForTwo?.match(/\d+/)
+    const aCost = a?.data?.costForTwo
+    const bCost = b?.data?.costForTwo
+    // const aCost = a?.data?.costForTwo?.match(/\d+/)
+    // const bCost = b?.data?.costForTwo?.match(/\d+/)
     return isNaN(aCost) || isNaN(bCost) ? 0 : aCost - bCost
   },
   PRICE_HIGH_TO_LOW: (a, b) => {
-    const aCost = a?.info?.costForTwo?.match(/\d+/)
-    const bCost = b?.info?.costForTwo?.match(/\d+/)
+    // const aCost = a?.data?.costForTwo?.match(/\d+/)
+    // const bCost = b?.data?.costForTwo?.match(/\d+/)
+    const aCost = a?.data?.costForTwo
+    const bCost = b?.data?.costForTwo
     return isNaN(aCost) || isNaN(bCost) ? 0 : bCost - aCost
   }
 }
 
 const filterRestaurants = (restaurants, predicate) => {
-  return restaurants.filter(predicate);
-};
+  return restaurants.filter(predicate)
+}
 
 const sortRestaurants = (restaurants, compareFn) => {
-  return restaurants.sort(compareFn);
-};
+  return restaurants.sort(compareFn)
+}
 
 export const RestaurantContainer = () => {
-  const [restaurants, setRestaurants] = useState([]);
-  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-  const [searchText, setSearchText] = useState("");
+  const [restaurants, setRestaurants] = useState([])
+  const [filteredRestaurants, setFilteredRestaurants] = useState([])
+  const [searchText, setSearchText] = useState('')
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
+        const response = await fetch(
           'https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6139391&lng=77.2090212&page_type=DESKTOP_WEB_LISTING'
         )
-        const restaurants = response?.data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+        const json = await response.json()
+        console.log(json)
+        const restaurants = json?.data?.cards.filter(res => res?.cardType === 'seeAllRestaurants')[0].data.data.cards
         setRestaurants(restaurants)
         setFilteredRestaurants(restaurants)
       } catch (error) {
@@ -88,7 +94,7 @@ export const RestaurantContainer = () => {
 
   return (
     <>
-      {restaurants?.length === 0 ? (
+      {!filteredRestaurants || filteredRestaurants?.length === 0 ? (
         <div className="restaurant-container">
           <div className="search-area">
             <Shimmer type={'LINE'} height={'18px'} />
@@ -135,11 +141,11 @@ export const RestaurantContainer = () => {
           </div>
           <div className="cards-area">
             {filteredRestaurants.map(restaurant => (
-              <RestaurantCard key={restaurant.info.id} resData={restaurant.info} />
+              <RestaurantCard key={restaurant?.data.id} resData={restaurant?.data} />
             ))}
           </div>
         </div>
       )}
     </>
   )
-};
+}
