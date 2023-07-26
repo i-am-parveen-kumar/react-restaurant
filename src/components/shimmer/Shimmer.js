@@ -3,9 +3,8 @@ import "./Shimmer.scss";
 export const Shimmer = ({ type, width, height }) => {
   const styles = {
     width,
-    height,
-  };
-  console.log(styles);
+    height
+  }
   if (type == "BOX") {
     return <div className="shine box" style={styles}></div>;
   }

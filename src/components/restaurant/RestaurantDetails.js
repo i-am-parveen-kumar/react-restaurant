@@ -5,9 +5,6 @@ import useRestaurantMenu from '../../utils/hooks/useRestaurantMenu'
 const RestaurantDetails = () => {
   const { id } = useParams()
   const { resDetails, menuItemCards } = useRestaurantMenu(id)
-  console.log(resDetails)
-  console.log(menuItemCards)
-
   const { name, areaName, costForTwoMessage, avgRatingString, cuisines, totalRatingsString } =
     resDetails?.[0]?.card?.card?.info || {}
 

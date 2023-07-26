@@ -1,7 +1,6 @@
 import "../../scss/MenuCard.scss";
 const MenuCard = ({ info }) => {
-  const { name, description, price, imageId, isVeg, category } = info;
-  console.log("menu ", info);
+  const { name, description, price, imageId, isVeg, category } = info
   return (
     <div className="menu-container">
       <div className="menu-details-container">

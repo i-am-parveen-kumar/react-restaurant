@@ -53,7 +53,6 @@ export const RestaurantContainer = () => {
         const restaurants = response?.data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
         setRestaurants(restaurants)
         setFilteredRestaurants(restaurants)
-        console.log(restaurants[0])
       } catch (error) {
         console.error('Error fetching data:', error)
       }
