@@ -6,30 +6,27 @@ import { ShimmerRestaurantCard } from "../ShimmerRestaurantCard";
 import { Shimmer } from "../shimmer/Shimmer";
 
 const predicates = {
-  TOP_RATED_RESTAURANTS: (restaurant) => restaurant?.data?.avgRating > 4,
-  SEARCH: (searchText) => (restaurant) =>
-    restaurant?.data?.name?.toLowerCase().includes(searchText.toLowerCase()),
-};
+  TOP_RATED_RESTAURANTS: restaurant => restaurant?.info?.avgRating > 4,
+  SEARCH: searchText => restaurant => restaurant?.info?.name?.toLowerCase().includes(searchText.toLowerCase())
+}
 
 const compareFunctions = {
   RATINGS_LOW_TO_HIGH: (a, b) => {
-    return isNaN(a?.data?.avgRating) || isNaN(b?.data?.avgRating)
-      ? 0
-      : a?.data?.avgRating - b?.data?.avgRating;
+    return isNaN(a?.info?.avgRating) || isNaN(b?.info?.avgRating) ? 0 : a?.info?.avgRating - b?.info?.avgRating
   },
   RATINGS_HIGH_TO_LOW: (a, b) =>
-    isNaN(a?.data?.avgRating) || isNaN(b?.data?.avgRating)
-      ? 0
-      : b?.data?.avgRating - a?.data?.avgRating,
-  PRICE_LOW_TO_HIGH: (a, b) =>
-    isNaN(a?.data?.costForTwo) || isNaN(b?.data?.costForTwo)
-      ? 0
-      : a?.data?.costForTwo - b?.data?.costForTwo,
-  PRICE_HIGH_TO_LOW: (a, b) =>
-    isNaN(a?.data?.costForTwo) || isNaN(b?.data?.costForTwo)
-      ? 0
-      : b?.data?.costForTwo - a?.data?.costForTwo,
-};
+    isNaN(a?.info?.avgRating) || isNaN(b?.info?.avgRating) ? 0 : b?.info?.avgRating - a?.info?.avgRating,
+  PRICE_LOW_TO_HIGH: (a, b) => {
+    const aCost = a?.info?.costForTwo?.match(/\d+/)
+    const bCost = b?.info?.costForTwo?.match(/\d+/)
+    return isNaN(aCost) || isNaN(bCost) ? 0 : aCost - bCost
+  },
+  PRICE_HIGH_TO_LOW: (a, b) => {
+    const aCost = a?.info?.costForTwo?.match(/\d+/)
+    const bCost = b?.info?.costForTwo?.match(/\d+/)
+    return isNaN(aCost) || isNaN(bCost) ? 0 : bCost - aCost
+  }
+}
 
 const filterRestaurants = (restaurants, predicate) => {
   return restaurants.filter(predicate);
