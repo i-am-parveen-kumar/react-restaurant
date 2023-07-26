@@ -1,7 +1,6 @@
 import { RestaurantCard } from "./RestaurantCard";
 import "../../scss/RestaurantContainer.scss";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from 'react'
 import { ShimmerRestaurantCard } from "../ShimmerRestaurantCard";
 import { Shimmer } from "../shimmer/Shimmer";
 
