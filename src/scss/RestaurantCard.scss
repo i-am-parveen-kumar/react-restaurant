@@ -2,19 +2,11 @@ $link-color: #000000;
 
 .restaurant-card-container {
     text-decoration: none;
-
-    // :visited {
-    //     color: #000000;
-    //     text-decoration: none;
-    // }
-
     width: 250px;
-    padding: 10px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     row-gap: 5px;
-    // border: 1px solid black;
-
     img {
         width: 250px;
     }
@@ -28,16 +20,17 @@ $link-color: #000000;
 
     .res-name {
         font-size: 18px;
+        margin-bottom: 3px;
     }
 
     .res-cuisine {
         color: gray;
+        margin-bottom: 3px;
     }
 
     .ellipsis {
         display: -webkit-box;
         -webkit-line-clamp: 2;
-        /* Number of lines to show */
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -70,5 +63,16 @@ a {
     &:link,
     &:visited {
         @include link-styling;
-    }
+    
+}
+}
+
+.elevatable-div {
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease;
+}
+
+.elevatable-div:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
 }

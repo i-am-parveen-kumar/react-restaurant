@@ -48,81 +48,67 @@ export const RestaurantContainer = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6139391&lng=77.2090212&page_type=DESKTOP_WEB_LISTING"
-        );
-        const restaurants = response.data.data.cards.filter(
-          (res) => res.cardType === "seeAllRestaurants"
-        )[0].data.data.cards;
-        setRestaurants(restaurants);
-        setFilteredRestaurants(restaurants);
-        console.log(restaurants[0]);
+          'https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6139391&lng=77.2090212&page_type=DESKTOP_WEB_LISTING'
+        )
+        const restaurants = response?.data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+        setRestaurants(restaurants)
+        setFilteredRestaurants(restaurants)
+        console.log(restaurants[0])
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error)
       }
-    };
-    fetchData();
-  }, []);
+    }
+    fetchData()
+  }, [])
 
   const showTopRatedRestaurants = () => {
-    setFilteredRestaurants(
-      filterRestaurants(restaurants, predicates.TOP_RATED_RESTAURANTS)
-    );
-  };
+    setFilteredRestaurants(filterRestaurants(restaurants, predicates.TOP_RATED_RESTAURANTS))
+  }
 
   const showLowToHighRatedRestaurants = () => {
-    setFilteredRestaurants([
-      ...sortRestaurants(restaurants, compareFunctions.RATINGS_LOW_TO_HIGH),
-    ]);
-  };
+    setFilteredRestaurants([...sortRestaurants(restaurants, compareFunctions.RATINGS_LOW_TO_HIGH)])
+  }
 
   const showHighToLowRatedRestaurants = () => {
-    setFilteredRestaurants([
-      ...sortRestaurants(restaurants, compareFunctions.RATINGS_HIGH_TO_LOW),
-    ]);
-  };
+    setFilteredRestaurants([...sortRestaurants(restaurants, compareFunctions.RATINGS_HIGH_TO_LOW)])
+  }
 
   const showLowToHighPricedRestaurants = () => {
-    setFilteredRestaurants([
-      ...sortRestaurants(restaurants, compareFunctions.PRICE_LOW_TO_HIGH),
-    ]);
-  };
+    setFilteredRestaurants([...sortRestaurants(restaurants, compareFunctions.PRICE_LOW_TO_HIGH)])
+  }
 
   const showHighToLowPricedRestaurants = () => {
-    setFilteredRestaurants([
-      ...sortRestaurants(restaurants, compareFunctions.PRICE_HIGH_TO_LOW),
-    ]);
-  };
+    setFilteredRestaurants([...sortRestaurants(restaurants, compareFunctions.PRICE_HIGH_TO_LOW)])
+  }
 
-  const handleSearchBoxChange = (event) => {
-    const searchText = event.target.value;
-    setSearchText(searchText);
-  };
+  const handleSearchBoxChange = event => {
+    const searchText = event.target.value
+    setSearchText(searchText)
+  }
 
   const search = () => {
-    setFilteredRestaurants(
-      filterRestaurants(restaurants, predicates.SEARCH(searchText))
-    );
-  };
+    setFilteredRestaurants(filterRestaurants(restaurants, predicates.SEARCH(searchText)))
+  }
 
   return (
     <>
-      {restaurants.length === 0 ? (
+      {restaurants?.length === 0 ? (
         <div className="restaurant-container">
           <div className="search-area">
-            <Shimmer type={"LINE"} height={"18px"} />
-            <Shimmer type={"LINE"} height={"18px"} />
+            <Shimmer type={'LINE'} height={'18px'} />
+            <Shimmer type={'LINE'} height={'18px'} />
 
-            <Shimmer type={"LINE"} height={"18px"} />
+            <Shimmer type={'LINE'} height={'18px'} />
 
-            <Shimmer type={"LINE"} height={"18px"} />
+            <Shimmer type={'LINE'} height={'18px'} />
 
-            <Shimmer type={"LINE"} height={"18px"} />
+            <Shimmer type={'LINE'} height={'18px'} />
 
-            <Shimmer type={"LINE"} height={"18px"} />
-            <Shimmer type={"LINE"} height={"18px"} />
+            <Shimmer type={'LINE'} height={'18px'} />
+            <Shimmer type={'LINE'} height={'18px'} />
           </div>
           <div className="cards-area">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((index) => (
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(index => (
               <ShimmerRestaurantCard key={index} />
             ))}
           </div>
@@ -130,48 +116,34 @@ export const RestaurantContainer = () => {
       ) : (
         <div className="restaurant-container">
           <div className="search-area">
-            <input
-              type="text"
-              value={searchText}
-              onChange={handleSearchBoxChange}
-            />
-            <button onClick={search}>Search</button>
+            <input type="text" value={searchText} onChange={handleSearchBoxChange} />
+            <button className="filterBtn" onClick={search}>
+              Search
+            </button>
 
             <button className="filterBtn" onClick={showTopRatedRestaurants}>
               TOP RATED RESTAURANTS
             </button>
-            <button
-              className="filterBtn"
-              onClick={showLowToHighRatedRestaurants}
-            >
+            <button className="filterBtn" onClick={showLowToHighRatedRestaurants}>
               LOW TO HIGH RATINGS
             </button>
-            <button
-              className="filterBtn"
-              onClick={showHighToLowRatedRestaurants}
-            >
+            <button className="filterBtn" onClick={showHighToLowRatedRestaurants}>
               HIGH TO LOW RATINGS
             </button>
-            <button
-              className="filterBtn"
-              onClick={showLowToHighPricedRestaurants}
-            >
+            <button className="filterBtn" onClick={showLowToHighPricedRestaurants}>
               LOW TO HIGH PRICE
             </button>
-            <button
-              className="filterBtn"
-              onClick={showHighToLowPricedRestaurants}
-            >
+            <button className="filterBtn" onClick={showHighToLowPricedRestaurants}>
               HIGH TO LOW PRICE
             </button>
           </div>
           <div className="cards-area">
-            {filteredRestaurants.map((restaurant) => (
-              <RestaurantCard key={restaurant.data.id} resData={restaurant} />
+            {filteredRestaurants.map(restaurant => (
+              <RestaurantCard key={restaurant.info.id} resData={restaurant.info} />
             ))}
           </div>
         </div>
       )}
     </>
-  );
+  )
 };
