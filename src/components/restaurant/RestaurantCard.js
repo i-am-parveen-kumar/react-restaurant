@@ -3,7 +3,7 @@ import "../../scss/RestaurantCard.scss";
 import classnames from "classnames";
 
 export const RestaurantCard = ({ resData }) => {
-  const { id, name, costForTwo, cuisines, slaString, avgRating, cloudinaryImageId } = resData
+  const { id, name, costForTwo, cuisines, sla, avgRating, cloudinaryImageId } = resData
 
   const avgRatingClass = classnames({
     'res-ratings': true,
@@ -24,7 +24,7 @@ export const RestaurantCard = ({ resData }) => {
         <div className="res-usp">
           <span className={avgRatingClass}>{avgRating}</span>
           <div>.</div>
-          <div>{slaString}</div>
+          <div>{sla?.slaString}</div>
           <div>.</div>
           <div>{costForTwo}</div>
         </div>
