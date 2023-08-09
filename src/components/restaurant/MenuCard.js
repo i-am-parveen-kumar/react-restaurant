@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import '../../scss/MenuCard.scss'
 import { addItem, removeItem } from '../../store/slices/cartSlice'
+import CulinaryOption from '../CulinaryOption'
 const MenuCard = ({ info }) => {
   const { name, description, price, imageId, isVeg, category } = info
 
@@ -16,7 +17,9 @@ const MenuCard = ({ info }) => {
   return (
     <div className="menu-container">
       <div className="menu-details-container">
-        <div className="menu-item-name">{name}</div>
+        <div className="menu-item-name">
+          {name} <CulinaryOption isVeg={isVeg} />
+        </div>
         <div>₹{price / 100}</div>
         <div className="menu-item-description">{description}</div>
       </div>
