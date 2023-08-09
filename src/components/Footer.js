@@ -4,7 +4,7 @@ import '../scss/Footer.scss'
 
 const Footer = () => {
   return (
-    <footer className="bg-blue-900 text-white">
+    <footer className="mt-2 bg-blue-900 text-white">
       <div className="container mx-auto py-12 px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
           <h3 className="text-lg font-semibold mb-4">About Us</h3>

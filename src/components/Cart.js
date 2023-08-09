@@ -3,6 +3,7 @@ import CartItem from './CartItem'
 import CheckoutButton from '../utils/stripe'
 import { clearCart } from '../store/slices/cartSlice'
 import EmptyCart from './EmptyCart'
+
 const Cart = () => {
   const items = []
   const storeItems = useSelector(store => store.cart.items)
@@ -25,14 +26,19 @@ const Cart = () => {
     dispatch(clearCart())
   }
   return (
-    <div className="w-96 text-center mx-auto mt-10 p-4">
-      <div className="flex justify-between border-b mb-4">
-        <div>Cart Items</div>
-        <button onClick={() => handleClearCart()}>Clear Cart</button>
+    <div className="w-[28rem] text-center mx-auto mt-10 p-4">
+      <div className="flex justify-between mb-2">
+        <div className="font-bold">Cart Items</div>
+        <button className="border border-red-500 px-4 py-[1px] rounded" onClick={() => handleClearCart()}>
+          Clear Cart
+        </button>
       </div>
-      {items?.map(items => (
-        <CartItem key={items[0].id} items={items} />
-      ))}
+      <div className="border-b"></div>
+      <div className="max-h-80 overflow-auto">
+        {items?.map(items => (
+          <CartItem key={items[0].id} items={items} />
+        ))}
+      </div>
       <div className="flex justify-between mb-[0.5px] mt-[0.5px] text-sm">
         <div>Sub Total</div>
         <div>{subTotal}</div>
