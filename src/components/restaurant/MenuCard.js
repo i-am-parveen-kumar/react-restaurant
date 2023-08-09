@@ -1,6 +1,16 @@
-import "../../scss/MenuCard.scss";
+import { useDispatch } from 'react-redux'
+import '../../scss/MenuCard.scss'
+import { addItem, removeItem } from '../../store/slices/cartSlice'
 const MenuCard = ({ info }) => {
   const { name, description, price, imageId, isVeg, category } = info
+
+  const dispatch = useDispatch()
+  const handleAddItem = item => {
+    dispatch(addItem(item))
+  }
+  const handleRemoveItem = item => {
+    dispatch(removeItem(item.id))
+  }
   return (
     <div className="menu-container">
       <div className="menu-details-container">
@@ -13,10 +23,21 @@ const MenuCard = ({ info }) => {
           className="menu-item-img"
           src={'https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/' + imageId}
         />
-        <button className="add-to-cart-btn">ADD</button>
+        <div className="add-to-cart-btn-container">
+          <div>
+            <button className="remove-from-cart-btn" onClick={() => handleRemoveItem(info)}>
+              -
+            </button>
+          </div>
+          <div>
+            <button className="add-to-cart-btn" onClick={() => handleAddItem(info)}>
+              +
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   )
-};
+}
 
-export default MenuCard;
+export default MenuCard

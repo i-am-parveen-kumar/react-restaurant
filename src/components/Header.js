@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faInfoCircle, faPhone, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { useSelector } from 'react-redux'
 
 export const Header = () => {
+  const items = useSelector(store => store.cart.items)
   return (
     <nav className="header-container">
       <div className="logo-container" alt="website-logo">
@@ -29,7 +31,9 @@ export const Header = () => {
             </Link>
           </li>
           <li>
-            <FontAwesomeIcon icon={faShoppingCart} /> Cart
+            <Link to="/cart">
+              <FontAwesomeIcon icon={faShoppingCart} /> Cart ({Object.keys(items)?.length})
+            </Link>
           </li>
         </ul>
       </div>

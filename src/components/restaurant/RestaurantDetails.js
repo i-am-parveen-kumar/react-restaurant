@@ -30,7 +30,7 @@ const RestaurantDetails = () => {
       <div>
         {menuItemCards?.map(card => (
           <>
-            <div className="accordion">
+            <div className="accordion" key={card?.card?.card?.title}>
               <div className="accordion-item">
                 <div className="accordion-header">{card?.card?.card?.title}</div>
                 <div className="accordion-content">
