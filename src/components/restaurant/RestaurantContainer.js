@@ -1,8 +1,8 @@
-import { RestaurantCard } from "./RestaurantCard";
-import "../../scss/RestaurantContainer.scss";
+import { RestaurantCard } from './RestaurantCard'
+import '../../scss/RestaurantContainer.scss'
 import { useEffect, useState } from 'react'
-import { ShimmerRestaurantCard } from "../ShimmerRestaurantCard";
-import { Shimmer } from "../shimmer/Shimmer";
+import { ShimmerRestaurantCard } from '../ShimmerRestaurantCard'
+import { Shimmer } from '../shimmer/Shimmer'
 
 let key = 'info'
 const predicates = {
@@ -51,7 +51,6 @@ export const RestaurantContainer = () => {
         const restaurants =
           json?.data?.cards.filter(res => res?.cardType === 'seeAllRestaurants')?.[0]?.data?.data?.cards ||
           json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-
         setRestaurants(restaurants)
         setFilteredRestaurants(restaurants)
       } catch (error) {
@@ -116,7 +115,7 @@ export const RestaurantContainer = () => {
       ) : (
         <div className="restaurant-container">
           <div className="search-area">
-            <input type="text" value={searchText} onChange={handleSearchBoxChange} />
+            <input data-testid="search-input" type="text" value={searchText} onChange={handleSearchBoxChange} />
             <button className="filterBtn" onClick={search}>
               Search
             </button>

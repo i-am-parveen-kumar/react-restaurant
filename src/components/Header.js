@@ -31,7 +31,7 @@ export const Header = () => {
             </Link>
           </li>
           <li>
-            <Link to="/cart">
+            <Link data-testid="header-cart" to="/cart">
               <FontAwesomeIcon icon={faShoppingCart} /> Cart ({Object.keys(items)?.length})
             </Link>
           </li>

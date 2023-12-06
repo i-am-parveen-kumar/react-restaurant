@@ -1,0 +1,67 @@
+{
+  "id": "302684",
+  "name": "Barbeque Nation",
+  "cloudinaryImageId": "v4ryntwbvxuogbwfg3kj",
+  "locality": "Connaught Place",
+  "areaName": "Connaught Place",
+  "costForTwo": "₹600 for two",
+  "cuisines": ["North Indian", "Barbecue", "Biryani", "Kebabs", "Mughlai", "Desserts"],
+  "avgRating": 3.9,
+  "feeDetails": {
+    "restaurantId": "302684",
+    "fees": [
+      {
+        "name": "BASE_DISTANCE",
+        "fee": 5000
+      },
+      {
+        "name": "BASE_TIME"
+      },
+      {
+        "name": "ANCILLARY_SURGE_FEE"
+      }
+    ],
+    "totalFee": 5000
+  },
+  "parentId": "2438",
+  "avgRatingString": "3.9",
+  "totalRatingsString": "1K+",
+  "sla": {
+    "deliveryTime": 35,
+    "lastMileTravel": 2.9,
+    "serviceability": "SERVICEABLE",
+    "slaString": "35 mins",
+    "lastMileTravelString": "2.9 km",
+    "iconType": "ICON_TYPE_EMPTY"
+  },
+  "availability": {
+    "nextCloseTime": "2023-11-16 23:30:00",
+    "opened": true
+  },
+  "badges": {},
+  "isOpen": true,
+  "type": "F",
+  "badgesV2": {
+    "entityBadges": {
+      "imageBased": {},
+      "textBased": {},
+      "textExtendedBadges": {}
+    }
+  },
+  "aggregatedDiscountInfoV3": {
+    "header": "₹150 OFF",
+    "subHeader": "ABOVE ₹349",
+    "discountTag": "FLAT DEAL"
+  },
+  "differentiatedUi": {
+    "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+    "differentiatedUiMediaDetails": {
+      "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+      "lottie": {},
+      "video": {}
+    }
+  },
+  "reviewsSummary": {},
+  "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+  "restaurantOfferPresentationInfo": {}
+}

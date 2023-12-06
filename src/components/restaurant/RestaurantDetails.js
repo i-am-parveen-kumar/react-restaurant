@@ -1,6 +1,6 @@
-import { useParams } from "react-router-dom";
-import "../../scss/RestaurantDetails.scss";
-import MenuCard from "./MenuCard";
+import { useParams } from 'react-router-dom'
+import '../../scss/RestaurantDetails.scss'
+import MenuCard from './MenuCard'
 import useRestaurantMenu from '../../utils/hooks/useRestaurantMenu'
 const RestaurantDetails = () => {
   const { id } = useParams()
@@ -30,6 +30,7 @@ const RestaurantDetails = () => {
       <div>
         {menuItemCards?.map(card => (
           <>
+            {console.log(card)}
             <div className="accordion" key={card?.card?.card?.title}>
               <div className="accordion-item">
                 <div className="accordion-header">{card?.card?.card?.title}</div>
@@ -40,13 +41,6 @@ const RestaurantDetails = () => {
                 </div>
               </div>
             </div>
-            {/* <h3 key={card?.card?.card?.id}>{card?.card?.card?.title}</h3> */}
-            {/* {card?.card?.card?.itemCards.map((itemCard) => (
-              <MenuCard
-                key={itemCard?.card?.info?.id}
-                info={itemCard?.card?.info}
-              />
-            ))} */}
           </>
         ))}
       </div>
@@ -54,4 +48,4 @@ const RestaurantDetails = () => {
   )
 }
 
-export default RestaurantDetails;
+export default RestaurantDetails

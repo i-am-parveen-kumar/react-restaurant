@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import "../../scss/RestaurantCard.scss";
-import classnames from "classnames";
+import { Link } from 'react-router-dom'
+import '../../scss/RestaurantCard.scss'
+import classnames from 'classnames'
 
 export const RestaurantCard = ({ resData }) => {
   const { id, name, costForTwo, cuisines, sla, avgRating, cloudinaryImageId } = resData
@@ -12,7 +12,7 @@ export const RestaurantCard = ({ resData }) => {
   })
   return (
     <Link className="restaurant-card-container elevatable-div" to={`/restaurant/${id}`}>
-      <div>
+      <div data-testid="resCard">
         <img
           src={
             'https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/' +
@@ -31,4 +31,4 @@ export const RestaurantCard = ({ resData }) => {
       </div>
     </Link>
   )
-};
+}
